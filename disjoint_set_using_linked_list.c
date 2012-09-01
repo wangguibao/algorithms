@@ -1,6 +1,6 @@
 /*
  * Disjoint set using linked list
- * Implements MAKE-SET, UNION and FIND-SET algorithms
+ * Implements MAKE_SET, UNION and FIND_SET algorithms
  *
  * Test case directly copied from practice 21.2-2, CLRS 2nd
  */
