@@ -106,11 +106,11 @@ void destroy_list(NODE *m)
 }
 
 /*
- * @brief Multiply the list-represented integer by a single digit
+ * Multiply the list-represented integer by a single digit
  *
- * @param m1         - the list to be multiplied by multiplier
- * @param multiplier - a single digit
- * @param result     - resultant linked-list
+ * m1         - the list to be multiplied by multiplier
+ * multiplier - a single digit
+ * result     - resultant linked-list
  */
 int multiply_to(NODE *m1, int multiplier, NODE **result)
 {
@@ -147,11 +147,11 @@ int multiply_to(NODE *m1, int multiplier, NODE **result)
 }
 
 /*
- * @brief Multiply the list by 10.
- * @detail The list will be manipulated in-place
+ * Multiply the list by 10.
+ * The list will be manipulated in-place
  *
- * @param m1   - the linked-list that is to be multiplied
- * @param time - number of times the linked-list will be multiplied by 10
+ * m1   - the linked-list that is to be multiplied
+ * time - number of times the linked-list will be multiplied by 10
  */
 void multiply_to_10(NODE **m1, int time)
 {
@@ -176,9 +176,10 @@ void multiply_to_10(NODE **m1, int time)
 }
 
 /*
- * @brief Add two linked list
- * @param dst - the augend
- * @param src - the addend
+ * Add two linked list
+ *
+ * dst - the augend
+ * src - the addend
  */
 void add_to(NODE **dst, NODE **src)
 {
@@ -223,10 +224,11 @@ void add_to(NODE **dst, NODE **src)
 }
 
 /*
- * @brief Multiply two linked-lists
- * @param m1 - multiplicand
- * @param m2 - multiplier
- * @return a linked list
+ * Multiply two linked-lists
+ *
+ * m1 - multiplicand
+ * m2 - multiplier
+ * returns a linked list
  */
 NODE * multiply(NODE *m1, NODE *m2)
 {
@@ -278,3 +280,4 @@ int main()
 
     return 0;
 }
+
