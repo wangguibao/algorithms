@@ -4,6 +4,7 @@
  *
  * http://stackoverflow.com/a/2631810/1513460
  * http://stackoverflow.com/a/7614385/1513460
+ * http://en.wikipedia.org/wiki/Longest_increasing_subsequence#Efficient_algorithms
  */
 #include <stdio.h>
 #include <limits.h>
