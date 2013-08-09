@@ -39,7 +39,7 @@ NODE *rotate_right(NODE *head)
 {
     NODE *x;
 
-    if (head == NULL || head->left == NULL) {
+    if (head == z || head->left == z) {
         printf("rotate_right invalid\n");
         return head;
     }
@@ -53,12 +53,12 @@ NODE *rotate_right(NODE *head)
 NODE *rotate_left(NODE *head)
 {
     NODE *x;
-    if (head == NULL || head->right == NULL) {
+    if (head == z || head->right == z) {
         printf("rotate_left invalid\n");
         return head;
     }
 
-    x = head->left;
+    x = head->right;
     head->right = x->left;
     x->left = head;
 
@@ -83,7 +83,7 @@ NODE *rbtree_insert(NODE *head, char datum, DIRECTION direction)
             head = rotate_right(head);
         }
 
-        if (head->left->color == RED && head->left->left != NULL &&
+        if (head->left->color == RED && head->left->left != z &&
             head->left->left->color == RED) {
             head = rotate_right(head);
             head->color = BLACK;
@@ -96,7 +96,7 @@ NODE *rbtree_insert(NODE *head, char datum, DIRECTION direction)
             head = rotate_left(head);
         }
 
-        if (head->left->color == RED && head->right->right != NULL &&
+        if (head->right->color == RED && head->right->right != z &&
             head->right->right->color == RED) {
             head = rotate_left(head);
             head->color = BLACK;
@@ -107,17 +107,18 @@ NODE *rbtree_insert(NODE *head, char datum, DIRECTION direction)
     return head;
 }
 
-NODE *tree_insert(char datum)
+void tree_insert(char datum)
 {
-    return rbtree_insert(h, datum, LEFT);
+    h = rbtree_insert(h, datum, LEFT);
+    h->color = BLACK;
 }
 
-NODE *tree_init()
+void tree_init()
 {
     sentinel.datum = '\0';
-    sentinel.left = sentinel.right = &sentinel;
+    sentinel.left = sentinel.right = NULL;
     z = h = &sentinel;
-    return h;
+    return;
 }
 
 void tree_visit(TREE_NODE *tree)
@@ -125,38 +126,45 @@ void tree_visit(TREE_NODE *tree)
     printf("%c\n", ((NODE *)tree)->datum);
 }
 
-NODE *tree_search(NODE *head, char datum)
+void tree_search(NODE *head, char datum)
 {
-    NODE *node;
-    if (head == NULL) {
-        return NULL;
+    if (head == z) {
+        return;
     }
 
     if (head->datum == datum) {
+        printf("%c\n", head->datum);
         printf("found\n");
-        return head;
+        return;
     }
-
-    if ((node = tree_search(head->left, datum)) != NULL) {
-        return node;
+    else if (datum < head->datum) {
+        printf("%c --> ", head->datum);
+        tree_search(head->left, datum);
     }
-    return tree_search(head->right, datum);
+    else {
+        printf("%c --> ", head->datum);
+        tree_search(head->right, datum);
+    }
 }
 
 int main()
 {
     char *str = "ASERCHINGX";
-    NODE *tree = tree_init();
     int n = strlen(str);
     int i;
 
+    tree_init();
     for (i = 0; i < n; i++) {
-        tree = tree_insert(str[i]);
+        tree_insert(str[i]);
     }
 
-    tree_search(tree, 'X');
-
+    printf("========Tree structure===========\n");
     tu_init();
-    tu_print_tree((TREE_NODE *)tree, RIGHT, tree_visit);
+    tu_print_tree((TREE_NODE *)h, RIGHT, tree_visit);
+    printf("=================================\n");
+
+    printf("Searching X\n");
+    tree_search(h, 'X');
+
     return 0;
 }

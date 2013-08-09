@@ -3,7 +3,7 @@
 #include "treeutil.h"
 
 #define MAX_LEN 32
-char indent[(MAX_LEN + 1) * 2];
+static char indent[(MAX_LEN + 1) * 2];
 
 void tu_init()
 {
