@@ -1,3 +1,9 @@
+/*
+ * red_black_tree.c
+ * 2-3-4 tree based red black tree implemeatation. Currently only tree insert and serach implemented
+ *
+ * Author: Wang Guibao <wang_guibao#163.com>
+ */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -35,6 +41,12 @@ NODE *new_node(char c, NODE *left, NODE *right, int color)
     return node;
 }
 
+/**
+ * rotate_right
+ * Perform right rotation on a tree node
+ * @param head  node on which right rotation is to be performed
+ * @return new node in place of old node on which right rotation performed
+ */
 NODE *rotate_right(NODE *head)
 {
     NODE *x;
@@ -50,6 +62,12 @@ NODE *rotate_right(NODE *head)
     return x;
 }
 
+/**
+ * rotate_left
+ * Perform left rotation on a tree node
+ * @param head  node on which left rotation is to be performed
+ * @return new node in place of old node on which left rotation performed
+ */
 NODE *rotate_left(NODE *head)
 {
     NODE *x;
@@ -65,6 +83,18 @@ NODE *rotate_left(NODE *head)
     return x;
 }
 
+/**
+ * rbtree_insert
+ * Insert a new element into a red black tree. The philosophy is to understand the code as red-black
+ * tree representation of 2-3-4 tree. The insertion serves to break up 4-nodes on the way down to
+ * insertion point, and adjust tree nodes to fix the 2-3-4 tree properties on the way up to root
+ *
+ * @param head  root of red black tree
+ * @param datum element to be inserted
+ * @param direction direction along the way down to the leaf
+ *
+ * @return new root of the red black tree
+ */
 NODE *rbtree_insert(NODE *head, char datum, DIRECTION direction)
 {
     if (head == z) {
@@ -107,6 +137,11 @@ NODE *rbtree_insert(NODE *head, char datum, DIRECTION direction)
     return head;
 }
 
+/**
+ * tree_insert
+ * Insert an element to a BST. Uses rbtree_insert as implementation
+ * @param datum element to be inserted
+ */
 void tree_insert(char datum)
 {
     h = rbtree_insert(h, datum, LEFT);
@@ -126,6 +161,12 @@ void tree_visit(TREE_NODE *tree)
     printf("%c\n", ((NODE *)tree)->datum);
 }
 
+/**
+ * tree_search
+ * Standard BST search routine. Prints the path along the way.
+ * @param head  root of the BST
+ * @param datum element to be searched
+ */
 void tree_search(NODE *head, char datum)
 {
     if (head == z) {
