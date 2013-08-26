@@ -100,7 +100,7 @@ int main()
     printf("Number of elements: ");
     scanf("%d", &n);
 
-    printf("Preorder sequence (max 16): ");
+    printf("Preorder sequence (max %d): ", MAX_ELE);
     for (i = 0; i < n; i++) {
         scanf("%d", &preorder[i]);
     }
