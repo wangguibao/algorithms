@@ -105,7 +105,7 @@ int main()
         scanf("%d", &preorder[i]);
     }
 
-    printf("Inorder sequence (max 16): ");
+    printf("Inorder sequence (max %d): ", MAX_ELE);
     for (i = 0; i < n; i++) {
         scanf("%d", &inorder[i]);
     }
