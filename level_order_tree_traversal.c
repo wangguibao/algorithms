@@ -1,7 +1,7 @@
 /*
- * level_order_traversal.c
- * level_order traversal of a binary tree
- *
+ * @file level_order_traversal.c
+ * @author wangguibao (https://github.com/wangguibao/)
+ * @brief level_order traversal of a binary tree
  * BONUS: print_tree() prints the binary tree prettily
  */
 #include <stdio.h>
