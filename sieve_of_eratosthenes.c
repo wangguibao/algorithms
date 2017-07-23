@@ -30,15 +30,11 @@ void sieve_of_eratosthenes(int n)
             a[j] = 0;
         }
 
-        for (j = i + 1; j * j <= n; ++j) {
-            if (a[j] != 0) {
-                i = j;
+        ++i;
+        for (; i * i <= n; ++i) {
+            if (a[i] != 0) {
                 break;
             }
-        }
-
-        if (j * j >= n) {
-            break;
         }
     }
 
