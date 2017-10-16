@@ -5,59 +5,39 @@
  *
  * https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
  */
-#include <stdio.h>
-#include <limits.h>
-
-#define MAX_ELE 1024
-
-void sieve_of_eratosthenes(int n)
+#define MAX_ELE 1001
+int main()
 {
-    int a[MAX_ELE + 1] = {0};
+    int prime[MAX_ELE + 1] = {1,};
     int i = 0;
     int j = 0;
-    if (n > MAX_ELE) {
-        printf("Out of range (%u)\n", MAX_ELE);
-        return;
-    }
 
-    for (i = 0; i <= n; ++i) {
-        a[i] = i;
+    for (i = 0; i <= MAX_ELE; ++i) {
+        prime[i] = 1;
     }
 
     i = 2;
-    while (i * i <= n) {
-        for (j = i * i; j <= n; j += i) {
-            a[j] = 0;
+    for (i = 2; i * i <= MAX_ELE;) {
+        if (prime[i] == 1) {
+            for (j = i * i; j <= MAX_ELE; j += i) {
+                prime[j] = 0;
+            }
         }
 
         ++i;
-        for (; i * i <= n; ++i) {
-            if (a[i] != 0) {
+        while (i * i <= MAX_ELE) {
+            if (prime[i] == 1) {
                 break;
             }
+            ++i;
         }
     }
 
-    for (i = 2; i <= n; ++i) {
-        if (a[i] != 0) {
-            printf("%u ", a[i]);
+    for (i = 2; i <= MAX_ELE; ++i) {
+        if (prime[i] == 1) {
+            printf("%u ", i);
         }
     }
     printf("\n");
-}
-
-int main()
-{
-    int n = 0;
-    int ret = 0;
-    printf("Integer range in which to compute all prime numbers (max %u): ", MAX_ELE);
-
-    ret = scanf("%u", &n);
-    if (ret != 1 || n <= 1 || n > MAX_ELE) {
-        printf("Invalid range %u\n", n);
-        return -1;
-    }
-
-    sieve_of_eratosthenes(n);
     return 0;
 }
