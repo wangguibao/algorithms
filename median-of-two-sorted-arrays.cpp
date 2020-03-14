@@ -3,6 +3,8 @@
  * @author Wang Guibao (https://github.com/wangguibao/)
  * @breif Find median of two sorted arrays whose lenghs not necessarily equal
  *
+ * Source: https://leetcode.com/problems/median-of-two-sorted-arrays/
+ *
  * This is a specialize case of finding the k-th element in the union of two
  * sorted arrays: assuming length of each arrays is m, n respectively, the
  * problem is to find (m + n) / 2 - th element.
