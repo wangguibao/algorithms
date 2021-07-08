@@ -75,6 +75,15 @@ int main()
         std::cout << std::endl;
     }
 
+    // Release memory
+    for (int i = 0; i < n; ++i) {
+        delete[] dst[i];
+    }
+
+    delete[] dst;
+
+    return 0;
+
     return 0;
 }
 
