@@ -2,7 +2,7 @@
  * @file transpose.c
  * @author wangguibao(wangguibao@baidu.com)
  * @date 2021/07/08 18:04:27
- * @brief
+ * @brief Matrix transposition
  *
  **/
 
