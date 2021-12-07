@@ -2,7 +2,8 @@
  * @file leetcode83_remove_duplicates_from_ascending_order_list.c
  * @author wangguibao(https://github.com/wangguibao)
  * @date 2021/12/03 20:08:39
- * @brief
+ * @brief Removing all duplicates from a sorted list, such that each
+ *        element appears only once.
  *
  **/
 #include <stddef.h>
