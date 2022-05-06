@@ -3,6 +3,7 @@
  * @author wangguibao(https://github.com/wangguibao)
  * @date 2021/12/19 15:23:32
  * @brief https://leetcode.com/problems/next-permutation/
+ * @ref https://www.keithschwarz.com/interesting/code/?dir=next-permutation
  *
  **/
 #include <iostream>
