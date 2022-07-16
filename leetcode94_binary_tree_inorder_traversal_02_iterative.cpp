@@ -35,7 +35,7 @@ public:
                     st.push(p);
                     p = p->left;
                 }
-            }else {
+            } else {
                 p = st.top();
                 result_vec.push_back(p->val);
                 st.pop();
