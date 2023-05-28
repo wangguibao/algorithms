@@ -4,7 +4,7 @@
  * @date 2023/05/28 15:55
  * @brief https://leetcode.com/problems/jump-game/
  *
- * NOTE: Although correct, this backtrack algorithm is TLE on leetcode.
+ * NOTE: Although correct, both the backtrack and DP solution is TLE on leetcode.
  * Better solution needs to be done.
  **/
 #include <iostream>
@@ -15,10 +15,33 @@ using namespace std;
 
 class Solution {
 public:
-    bool canJump(vector<int>& nums) {
+    bool canJump_backtrack(vector<int>& nums) {
         size_t len = nums.size();
 
         return backtrack(nums, len, 0);
+    }
+
+    bool canJump_dp(vector<int>& nums) {
+        size_t len = nums.size();
+
+        std::vector<std::vector<bool>> reachable;
+        reachable.resize(len);
+        for (size_t i = 0; i < len; ++i) {
+            reachable[i].resize(len);
+            for (int j = 0; j <= nums[i] && (i + j < len); ++j) {
+                reachable[i][i + j] = true;
+            }
+        }
+
+        for (size_t i = 1; i < len; ++i) {
+            for (size_t j = 1; j < i; ++j) {
+                if (reachable[0][j] && reachable[j][i]) {
+                    reachable[0][i] = true;
+                }
+            }
+        }
+
+        return reachable[0][len - 1];
     }
 
 private:
@@ -35,8 +58,9 @@ private:
 
         return false;
     }
-};
 
+
+};
 
 int main() {
     int n;
@@ -65,7 +89,7 @@ int main() {
         }
 
         Solution solution;
-        auto ret = solution.canJump(nums);
+        auto ret = solution.canJump_dp(nums);
 
         std::cout << (ret ? "true": "false") << std::endl;
     }
