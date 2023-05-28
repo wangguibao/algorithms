@@ -15,13 +15,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool canJump_backtrack(vector<int>& nums) {
-        size_t len = nums.size();
-
-        return backtrack(nums, len, 0);
-    }
-
-    bool canJump_dp(vector<int>& nums) {
+    bool canJump(vector<int>& nums) {
         size_t len = nums.size();
 
         std::vector<std::vector<bool>> reachable;
@@ -33,33 +27,24 @@ public:
             }
         }
 
+        if (reachable[0][len-1]) {
+            return true;
+        }
+
         for (size_t i = 1; i < len; ++i) {
             for (size_t j = 1; j < i; ++j) {
                 if (reachable[0][j] && reachable[j][i]) {
                     reachable[0][i] = true;
                 }
             }
+
+            if (!reachable[0][i]) {
+                return false;
+            }
         }
 
         return reachable[0][len - 1];
     }
-
-private:
-    bool backtrack(vector<int>& nums, int len, int index) {
-        if (index+1 >= len) {
-            return true;
-        }
-
-        for (int i = nums[index]; i >= 1; --i) {
-            if (backtrack(nums, len, index + i)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
 };
 
 int main() {
@@ -89,7 +74,7 @@ int main() {
         }
 
         Solution solution;
-        auto ret = solution.canJump_dp(nums);
+        auto ret = solution.canJump(nums);
 
         std::cout << (ret ? "true": "false") << std::endl;
     }
