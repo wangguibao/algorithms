@@ -1,8 +1,8 @@
 /**
  * @file leetcode58_length_of_last_word.cpp
  * @author wangguibao(https://github.com/wangguibao)
- * @date 2023/05/27 11:08
- * @brief https://leetcode.com/problems/length-of-last-word/
+ * @date 2023/05/31 22:16
+ * @brief https://leetcode.com/problems/valid-palindrome
  *
  **/
 #include <iostream>
