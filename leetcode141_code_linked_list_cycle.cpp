@@ -3,6 +3,8 @@
  * @author wangguibao(wang_guibao@163.com)
  * @date 2023/06/03 10:42
  * @brief https://leetcode.com/problems/linked-list-cycle
+ *
+ * Two solutions provided.
  **/
 #include <iostream>
 #include <set>
@@ -20,7 +22,12 @@ struct ListNode {
 
 class Solution {
 public:
-    bool hasCycle(ListNode *head) {
+    /*
+     * O(n) space solution
+     * When traversing the list, if a node is seen a second time, then there's
+     * a cycle.
+     */
+    bool hasCycle1(ListNode *head) {
         if (head == nullptr) {
             return false;
         }
@@ -38,6 +45,44 @@ public:
 
         return false;
     }
+
+    /*
+     * O(1) space solution
+     * While traversing the list, if fast pointer catches up with the slow
+     * pointer, then there is a cycle
+     */
+    bool hasCycle2(ListNode *head) {
+        if (head == nullptr) {
+            return false;
+        }
+
+        ListNode* p1 = head;    // The slow pointer
+        ListNode* p2 = head;    // The fast pointer
+
+        while (p1 && p2) {
+            p1 = p1->next;
+            if (!p1) {
+                break;
+            }
+
+            p2 = p2->next;
+            if (!p2) {
+                break;
+            }
+
+            if (!p2) {
+                break;
+            }
+
+            p2 = p2->next;
+            if (p2 == p1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 };
 
 ListNode* createListFromVec(std::vector<int> nums, int tailPos) {
@@ -111,7 +156,7 @@ int main() {
         printList(h, n);
 
         Solution solution;
-        auto result = solution.hasCycle(h);
+        auto result = solution.hasCycle2(h);
 
         std::cout << (result? "true" : "false") << std::endl;
     }
